@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>คิวนวดออกหน่วย ศพท.ลำปาง</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <style>
+        /* บังคับให้ iframe และ body ใช้ความสูง 100% ของหน้าจอ */
+        html, body {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: hidden; /* ป้องกันแถบเลื่อนซ้อนกัน */
+            background-color: #f0f2f5; /* สีพื้นหลังเหมือน Web App เพื่อให้ดูเนียนตา */
+        }
+
+        /* ตั้งค่า Iframe ให้กว้างและสูงเต็มพื้นที่ ไม่มีขอบ */
+        #gas-app-frame {
+            width: 100%;
+            height: 100%;
+            border: none;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+
+    <iframe id="gas-app-frame" 
+            src="https://script.google.com/macros/s/AKfycbx6y0Eb0vffPXrAdDZG2nTOR4BRICFloy5bwW_c75tB4xIKteUufQ3K4kumrb1brzilPQ/exec" 
+            allowfullscreen>
+    </iframe>
+
+</body>
+</html>
