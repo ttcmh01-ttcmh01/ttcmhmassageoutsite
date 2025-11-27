@@ -7,33 +7,31 @@
     
     <meta property="og:title" content="จองคิวนวดออกหน่วย ศพท. เขตสุขภาพที่ 1">
     <meta property="og:description" content="ระบบลงทะเบียนล่วงหน้า สะดวก รวดเร็ว ไม่ต้องรอคิวหน้างาน">
-    <meta property="og:image" content="https://i.ibb.co/chfxs2s3/2025-11-24-224944.png"> <meta property="og:url" content="https://ttcmh01-ttcmh01.github.io/ttcmhmassageoutsite/">
+    <meta property="og:image" content="https://i.ibb.co/chfxs2s3/2025-11-24-224944.png">
+    <meta property="og:url" content="https://ttcmh01-ttcmh01.github.io/ttcmhmassageoutsite/">
     <meta property="og:type" content="website">
 
-    <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/3063/3063822.png">
+    <link rel="icon" href="https://i.ibb.co/chfxs2s3/2025-11-24-224944.png">
 
     <style>
-        /* จัดหน้าจอให้เต็ม 100% ไม่มีขอบขาว */
         body, html {
             margin: 0;
             padding: 0;
             height: 100%;
             overflow: hidden;
-            background-color: #f3f4f6; /* สีพื้นหลังเดียวกับแอป */
+            background-color: #f3f4f6;
             font-family: 'Prompt', sans-serif;
         }
 
-        /* iframe เต็มจอ */
         #gas-app-frame {
             width: 100%;
             height: 100%;
             border: none;
             display: block;
-            opacity: 0; /* ซ่อนก่อน โหลดเสร็จค่อยโชว์ */
+            opacity: 0;
             transition: opacity 0.5s ease-in;
         }
 
-        /* ตัวหมุน Loading ของ GitHub Pages เอง */
         #github-loader {
             position: fixed;
             top: 0;
@@ -53,7 +51,7 @@
             width: 40px;
             height: 40px;
             border: 4px solid #f3f3f3;
-            border-top: 4px solid #059669; /* สีเขียวธีมแอป */
+            border-top: 4px solid #059669;
             border-radius: 50%;
             animation: spin 1s linear infinite;
         }
@@ -81,41 +79,30 @@
     <iframe id="gas-app-frame" allow="camera; microphone; geolocation"></iframe>
 
     <script>
-        // ============================================
-        // ตั้งค่าลิงก์ Web App (EXEC URL) ของคุณที่นี่
-        // ============================================
+        // ลิงก์ Web App (EXEC URL) ของคุณ
         const GAS_EXEC_URL = "https://script.google.com/macros/s/AKfycbx6y0Eb0vffPXrAdDZG2nTOR4BRICFloy5bwW_c75tB4xIKteUufQ3K4kumrb1brzilPQ/exec";
 
-        // ฟังก์ชันทำงานเมื่อโหลดหน้าเว็บ
         document.addEventListener("DOMContentLoaded", function() {
             const iframe = document.getElementById("gas-app-frame");
             const loader = document.getElementById("github-loader");
             
-            // 1. ดึงค่า Parameter (เช่น ?date=2025-12-05)
             const urlParams = window.location.search;
-            
-            // 2. สร้าง URL สุดท้าย
-            // เทคนิค: เช็คว่ามี ? หรือยัง ถ้ามีแล้วให้ใช้ & ถ้ายังให้ใช้ ? (เผื่ออนาคตลิงก์เปลี่ยน)
             const separator = GAS_EXEC_URL.includes('?') ? '&' : '?';
-            // เพิ่ม parameter date และ timestamp กัน Cache
-            const finalUrl = `${GAS_EXEC_URL}${urlParams}`;
+            
+            // เพิ่ม timestamp เพื่อป้องกัน cache
+            const timestamp = new Date().getTime();
+            const finalUrl = `${GAS_EXEC_URL}${urlParams}${urlParams ? '&' : separator}t=${timestamp}`;
 
-            // 3. สั่งโหลด iframe
             iframe.src = finalUrl;
 
-            // 4. เมื่อ iframe โหลดเสร็จ (หรือเกือบเสร็จ) ให้ซ่อน Loader
             iframe.onload = function() {
-                // ซ่อน Loader
                 loader.style.opacity = '0';
                 setTimeout(() => {
                     loader.style.display = 'none';
                 }, 500);
-                
-                // แสดง Iframe
                 iframe.style.opacity = '1';
             };
             
-            // Fallback: เผื่อ onload ไม่ทำงาน (บางที Google Block event) ให้ปิด Loader อัตโนมัติใน 5 วินาที
             setTimeout(() => {
                 if(loader.style.display !== 'none') {
                     loader.style.opacity = '0';
