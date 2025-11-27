@@ -3,15 +3,14 @@
 <head>
     <title>คิวนวดออกหน่วย ศพท.ลำปาง</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <style>
+    <meta charset="utf-8"> <style>
         /* บังคับให้ iframe และ body ใช้ความสูง 100% ของหน้าจอ */
         html, body {
             margin: 0;
             padding: 0;
             height: 100%;
             overflow: hidden; /* ป้องกันแถบเลื่อนซ้อนกัน */
-            background-color: #f0f2f5; /* สีพื้นหลังเหมือน Web App เพื่อให้ดูเนียนตา */
+            background-color: #f0f2f5;
         }
 
         /* ตั้งค่า Iframe ให้กว้างและสูงเต็มพื้นที่ ไม่มีขอบ */
@@ -25,10 +24,22 @@
 </head>
 <body>
 
-    <iframe id="gas-app-frame" 
-            src="https://script.google.com/macros/s/AKfycbx6y0Eb0vffPXrAdDZG2nTOR4BRICFloy5bwW_c75tB4xIKteUufQ3K4kumrb1brzilPQ/exec" 
-            allowfullscreen>
-    </iframe>
+    <iframe id="gas-app-frame" allowfullscreen></iframe>
+
+    <script>
+        // 1. ลิงก์หลักของ Google Apps Script Web App ของคุณ
+        const gasUrl = "https://script.google.com/macros/s/AKfycbx6y0Eb0vffPXrAdDZG2nTOR4BRICFloy5bwW_c75tB4xIKteUufQ3K4kumrb1brzilPQ/exec";
+
+        // 2. ดึงค่าพารามิเตอร์ต่อท้าย URL ของ GitHub (เช่น ?date=2025-11-30)
+        const urlParams = window.location.search;
+
+        // 3. นำมารวมกัน แล้วสั่งให้ iframe โหลด
+        const iframe = document.getElementById("gas-app-frame");
+        iframe.src = gasUrl + urlParams;
+
+        // (ตัวเลือกเสริม) พิมพ์ลง Console เพื่อเช็คความถูกต้อง
+        console.log("Loading URL:", iframe.src);
+    </script>
 
 </body>
 </html>
